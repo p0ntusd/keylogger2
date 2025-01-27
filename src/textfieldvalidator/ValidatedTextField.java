@@ -16,11 +16,12 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 /**
  * -------------------------- ValidatedTextField -------------------------
  */
-public class ValidatedTextField  extends JPanel {
+public class ValidatedTextField extends JPanel {
     private JTextField textField;
     private Validator validator;
     private JLabel icon;
@@ -66,7 +67,7 @@ public class ValidatedTextField  extends JPanel {
      * a checkmark if valid and a cross if not.
      */
     public void validate() {
-        if(validator.isValid(textField.getText())) {
+        if (validator.isValid(textField.getText())) {
             icon.setText("✅");
             valid = true;
         } else {
@@ -91,5 +92,14 @@ public class ValidatedTextField  extends JPanel {
      */
     public boolean isValid() {
         return valid;
+    }
+
+    /**
+     * Adds a KeyListener directly to the internal JTextField.
+     *
+     * @param listener The KeyListener to add.
+     */
+    public void addKeyListener(KeyListener listener) {
+        textField.addKeyListener(listener);
     }
 }
